@@ -10,7 +10,7 @@ Base = declarative_base()
 
     
 class User(Base):
-    __tablename__ = 'users'
+    __tablename__ = 'user'
     id = Column(Integer, primary_key=True)
     user_name = Column(String(100), nullable=False)
     user_first_name = Column(String(100), nullable=False)
@@ -18,13 +18,16 @@ class User(Base):
     user_email = Column(String(250), nullable=False)
     user_password = Column(String(100), nullable=False)
     login_status = Column(String(250), nullable=False)
+    user_fav = relationship('UserFav',  back_populates='user')
     user_fav = Column(Integer, ForeignKey('user_fav.id'))
+   
    
 
 class UserFav(Base):
     __tablename__ = 'user_fav'
     id = Column(Integer, primary_key=True)
     user_id = Column(Integer, ForeignKey('user.id'))
+    user = relationship('User', back_populates='user_fav')
     character_id = Column(Integer, ForeignKey('character.id'))
     planet_id = Column(Integer, ForeignKey('planet.id'))
     vehicle_id = Column(Integer, ForeignKey('vehicle.id'))
