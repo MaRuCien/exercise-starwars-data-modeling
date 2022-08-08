@@ -28,9 +28,9 @@ class UserFav(Base):
     id = Column(Integer, primary_key=True)
     user_id = Column(Integer, ForeignKey('user.id'))
     user = relationship('User', back_populates='user_fav')
-    character_id = Column(Integer, ForeignKey('character.id'))
-    planet_id = Column(Integer, ForeignKey('planet.id'))
-    vehicle_id = Column(Integer, ForeignKey('vehicle.id'))
+    character_id = Column(Integer, ForeignKey('fav_character.id'))
+    planet_id = Column(Integer, ForeignKey('fav_planet.id'))
+    vehicle_id = Column(Integer, ForeignKey('fav_vehicle.id'))
 
 
 class Characters(Base):
@@ -39,8 +39,8 @@ class Characters(Base):
     character_number = Column(String(250))
     character_name = Column(String(250))   
 
-class Character(Base):
-    __tablename__ = 'character'
+class Fav_Character(Base):
+    __tablename__ = 'fav_character'
     id = Column(Integer, primary_key=True)
     character_name = Column(String(250))
     character_description = Column(String(1000))
@@ -55,8 +55,8 @@ class Planets(Base):
     planet_name = Column(String(250))
     
 
-class Planet(Base):
-    __tablename__ = 'planet'
+class Fav_Planet(Base):
+    __tablename__ = 'fav_planet'
     id = Column(Integer, primary_key=True)
     planet_name = Column(String(250))
     planet_description = Column(String(1000))
@@ -70,8 +70,8 @@ class Vehicles(Base):
     vehicle_name = Column(String(250))
     
 
-class Vehicle(Base):
-    __tablename__ = 'vehicle'
+class Fav_Vehicle(Base):
+    __tablename__ = 'fav_vehicle'
     id = Column(Integer, primary_key=True)
     vehicle_name = Column(String(250))
     vehicle_description = Column(String(1000))
